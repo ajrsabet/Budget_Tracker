@@ -7,10 +7,18 @@ const FILES_TO_CACHE = [
   '/index.js',
   '/manifest.webmanifest',
   '/service-worker.js',
+  '/assets/images/icons/icon-72x72.png',
+  '/assets/images/icons/icon-96x96.png',
+  '/assets/images/icons/icon-128x128.png',
+  '/assets/images/icons/icon-144x144.png',
+  '/assets/images/icons/icon-152x152.png',
+  '/assets/images/icons/icon-192x192.png',
+  '/assets/images/icons/icon-384x384.png',
+  '/assets/images/icons/icon-512x512.png',
 ];
 
-const CACHE_NAME = 'static-cache-v1';
-const DATA_CACHE_NAME = 'data-cache-v1';
+const CACHE_NAME = 'static-cache-v2';
+const DATA_CACHE_NAME = 'data-cache-v2';
 
 self.addEventListener('install', function (evt) {
   evt.waitUntil(
@@ -24,7 +32,7 @@ self.addEventListener('install', function (evt) {
 
 self.addEventListener('activate', function(evt){
   evt.waitUntil(
-    cashes.keys().then(keyList => {
+    caches.keys().then(keyList => {
       return Promise.all(
         keyList.map(key => {
           if (key !== CACHE_NAME && key !== DATA_CACHE_NAME) {
